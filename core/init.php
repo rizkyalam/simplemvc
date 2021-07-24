@@ -13,6 +13,8 @@ $router = new Router;
 
 require_once 'app/configs/routes.php';
 
+require_once 'autoload.php';
+
 $router->renderFile();
 
 // $env = file_get_contents('.env');

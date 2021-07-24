@@ -31,7 +31,7 @@ class Router
             $split_route[] = $this->_urlSplitter($route['url']);
 
             $controller = [
-                'class'  => '\App\Controller\\' . $route['class'],
+                'class'  => '\App\Controllers\\' . $route['class'],
                 'method' => $route['method'],
                 'path'   => 'app/controllers/' . $route['class'] . '.php',
             ];
@@ -39,8 +39,6 @@ class Router
             // access from routes configuration
             if ($url[0] === trim($route['url'], '/')) {
                 if (file_exists($controller['path'])) {
-                    require_once $controller['path'];
-
                     if (method_exists($controller['class'], $controller['method'])) {
                         $routing['static'] = true;
 
@@ -96,8 +94,6 @@ class Router
 
         
         if ($parsing_url) {
-            require_once $this->controller['path'];
-
             $class = new $this->controller['class'];
             $method = $this->controller['method'];
             
