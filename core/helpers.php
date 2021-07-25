@@ -17,3 +17,15 @@ function namespace_to_path ($class) {
 function public_asset($file_path) {
     echo 'public/'.$file_path;
 }
+
+function create_env() {
+    $env_file = file_get_contents('.env');
+
+    $env_split = preg_split('/\n/', $env_file);
+
+    foreach ($env_split as $env) {
+        if (!empty($env)) {
+            putenv($env);
+        }
+    }
+}
