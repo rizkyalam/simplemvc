@@ -1,21 +1,19 @@
 <?php
 
-use Core\Router;
-use Core\HttpError;
+require_once 'autoload.php';
 
-require_once 'Router.php';
-require_once 'HttpError.php';
+require_once 'helpers.php';
 
 /**
  * Instance the router class
  */
-$router = new Router;
+$router = new Core\Router;
 
 require_once 'app/configs/routes.php';
 
-require_once 'autoload.php';
+require_once 'Controller.php';
 
-$router->renderFile();
+$router->render();
 
 // $env = file_get_contents('.env');
 

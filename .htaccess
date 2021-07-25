@@ -1,6 +1,14 @@
-Options -Multiviews
+Options -MultiViews
 
-RewriteEngine on
+RewriteEngine On
+
+# Accessing public directory from request url
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+# If url request doesn't access to public directory
+# then access from routing configuration
+RewriteCond %{THE_REQUEST} \s/public/ [NC,OR]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?url=$1 [NC,L,QSA]

@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 
-class HomeController
+use Core\Controller;
+
+class HomeController extends Controller
 {
     public function index()
     {
-        echo 'halaman index';
+        $this->view('home');
     }
 
     public function getId($id, $test)

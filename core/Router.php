@@ -5,7 +5,7 @@ namespace Core;
 class Router
 {
     private $valid_routes = [];
-    private $controller;
+    private $controller = [];
     private $params = [];
 
     public function get($route, $controller)
@@ -48,11 +48,6 @@ class Router
                     }
                 }
             }
-
-            // access from public directory
-            if (file_exists('public/' . $request_url)) {
-                return require_once 'public/' . $request_url;
-            }
         }
 
         // access dynamic routes
@@ -82,17 +77,11 @@ class Router
         return $url;
     }
 
-    private function _setParams($params)
-    {
-        $this->params = $params;
-    }
-
-    public function renderFile()
+    public function render()
     {
         $request_url = $_GET['url'];
         $parsing_url = $this->_parseUrl($request_url);
 
-        
         if ($parsing_url) {
             $class = new $this->controller['class'];
             $method = $this->controller['method'];
