@@ -1,5 +1,8 @@
 <?php 
 
+/*
+ * A functions to call a class automatically.
+ */
 spl_autoload_register(function($class) {
     $new_class = namespace_to_path($class);
 

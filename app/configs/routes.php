@@ -1,7 +1,16 @@
 <?php
 
-$router->get('/', [HomeController::class, 'index']);
-$router->get('/euy', [HomeController::class, 'test']);
+/*
+|----------------------------------------------
+| Routes Configuration
+|----------------------------------------------
+| 
+| Here is where you can configuration 
+| url web routes for your application.
+*/
 
-$router->get('/user', [HomeController::class, 'user']);
-$router->get('/test/{id}/{test}', [HomeController::class, 'getId']);
+// static routes
+$router->get('/', [HomeController::class, 'index']);
+
+// dynamic routes
+$router->get('/foo/{bar}', [HomeController::class, 'foo']);

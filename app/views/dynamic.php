@@ -5,19 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?= public_asset('favicon.ico') ?>">
-    <title>Simple MVC</title>
+    <title>Dynamic Route</title>
     <link rel="stylesheet" href="<?= public_asset('css/style.css') ?>">
 </head>
 <body>
     <div class="simple-container">
-        <h1 class="logo">Simple MVC</h1>
-        <p>Simple application framework for PHP by Rizky Alam</p>
-        <p>Version 1.0.0</p>
+        <h1 class="logo dynamic">Dynamic Route</h1>
+        <p>Display of <?= $bar ?></p>
         <ul class="simple-nav">
-            <li><a href="https://github.com/rizkyalam/simplemvc">Github</a></li>
-            <li><a href="<?= base_url('/foo/test') ?>">Dynamic Route</a></li>
+            <li><a href="<?= base_url() ?>">↩ Back to home</a></li>
         </ul>
     </div>
-    <script src="<?= public_asset('js/script.js') ?>"></script>
 </body>
 </html>

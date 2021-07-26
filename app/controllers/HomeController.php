@@ -3,36 +3,29 @@
 namespace App\Controllers;
 
 use Core\Controller;
-use Core\ModelFactory;
 
+/**
+ * Example Homepage Controller
+ */
 class HomeController extends Controller
 {
+    /**
+     * Display method for static route
+     */
     public function index()
     {
         $this->view('home');
     }
 
-    public function getId($id, $test)
+    /**
+     * Display method for dynamic route
+     * 
+     * @param $bar
+     */
+    public function foo($bar)
     {
-        echo "Get ID from $id and $test";
-    }
+        $data['bar'] = $bar;
 
-    public function test()
-    {
-        echo 'test';
-    }
-
-    public function user()
-    {
-        $data = [
-            'username' => 'test1',
-            'password' => password_hash('test', PASSWORD_BCRYPT),
-        ];
-
-        // ModelFactory::model('User')->create($data);
-        // ModelFactory::model('User')->update($data, 2);
-        // $user = ModelFactory::model('User')->get(['username', 'password'], ['user_id' => 1]);
-        // var_dump($user);
-        // ModelFactory::model('User')->delete(3);
+        $this->view('dynamic', $data);
     }
 }

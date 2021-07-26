@@ -6,13 +6,35 @@ use PDO;
 
 abstract class Model
 {
+    /**
+     * The properties that point to database table.
+     * 
+     * @var string
+     */
     protected $table = '';
+
+    /**
+     * The properties that point to primary key table.
+     * 
+     * @var string The default primary key is "id"
+     */
     protected $primary_key = 'id';
+
+    /**
+     * The properties that should be 
+     * fill of list rows table for insert or update.
+     * 
+     * @var array
+     */
     protected $fillable = [];
 
+    /**
+     * Insert a new data to database.
+     * 
+     * @param $data
+     */
     public function create($data)
     {
-
         $query = "INSERT INTO ".$this->table." (";
 
         foreach ($this->fillable as $fill) {
@@ -38,7 +60,13 @@ abstract class Model
         $stmt->execute();
     }
 
-    private function show($query)
+    /**
+     * Display data from database.
+     * 
+     * @param $query
+     * @return array
+     */
+    private function _show($query)
     {
         $stmt = Database::connect()->prepare($query);
         $stmt->execute();
@@ -51,13 +79,25 @@ abstract class Model
         return $rows;
     }
 
+    /**
+     * Display of all data.
+     * 
+     * @return array
+     */
     public function all()
     {
         $query = "SELECT * FROM " . $this->table;
 
-        return $this->show($query);
+        return $this->_show($query);
     }
 
+    /**
+     * Display the specified data.
+     * 
+     * @param $select Show selected data.
+     * @param $where Add a basic where clause to the query.
+     * @return array
+     */
     public function get($select, $where = [])
     {
         $query = "SELECT ";
@@ -78,9 +118,15 @@ abstract class Model
             $query = trim($query, ' AND');
         }
 
-        return $this->show($query);
+        return $this->_show($query);
     }
 
+    /**
+     * Updating a specified data in database.
+     * 
+     * @param $data
+     * @param $id
+     */
     public function update($data, $id)
     {
         $query = "UPDATE ".$this->table." SET ";
@@ -104,6 +150,11 @@ abstract class Model
         $stmt->execute();
     }
 
+    /**
+     * Delete a specified data in database.
+     * 
+     * @param $id
+     */
     public function delete($id)
     {
         $conn = Database::connect();

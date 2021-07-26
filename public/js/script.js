@@ -1,1 +1,3 @@
-console.log('ok');
+/**
+ * Here you can add javascript code
+ */

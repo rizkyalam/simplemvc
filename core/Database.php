@@ -6,30 +6,36 @@ use PDO;
 
 class Database
 {
-    private static $connection;
-    private static $host;
-    private static $dbname;
-    private static $username;
-    private static $password;
+    private static $_connection;
+    private static $_host;
+    private static $_dbname;
+    private static $_username;
+    private static $_password;
 
+    /**
+     * Make a connection to the database.
+     */
     public static function connect()
     {
-        $config = self::$connection.
-        ':host='.self::$host.
-        ';dbname='.self::$dbname;
+        $config = self::$_connection.
+        ':host='.self::$_host.
+        ';dbname='.self::$_dbname;
 
-        $conn = new PDO($config, self::$username, self::$password);
+        $conn = new PDO($config, self::$_username, self::$_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         return $conn;
     }
 
+    /**
+     * Setup the database configuration
+     */
     public static function init()
     {
-        self::$connection = getenv('DB_CONNECTION');
-        self::$host = getenv('DB_HOST');
-        self::$dbname = getenv('DB_DATABASE');
-        self::$username = getenv('DB_USERNAME');
-        self::$password = getenv('DB_PASSWORD');
+        self::$_connection = getenv('DB_CONNECTION');
+        self::$_host = getenv('DB_HOST');
+        self::$_dbname = getenv('DB_DATABASE');
+        self::$_username = getenv('DB_USERNAME');
+        self::$_password = getenv('DB_PASSWORD');
     }
 }

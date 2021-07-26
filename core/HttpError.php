@@ -2,8 +2,16 @@
 
 namespace Core;
 
+/**
+ * Here is for setting up and access 
+ * the display or message from the error of http
+ */
 class HttpError
 {
+    /**
+     * Display for client error which
+     * the page is not found
+     */
     public static function notFound()
     {
         http_response_code(404);
